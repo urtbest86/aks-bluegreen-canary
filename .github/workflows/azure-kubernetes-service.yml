@@ -30,8 +30,7 @@
 name: Blue-Green-strategy
 
 on:
-  push:
-    branches: ["main"]
+  push: none
   workflow_dispatch:
 
 env:
