@@ -100,6 +100,8 @@ jobs:
         uses: Azure/k8s-deploy@v5
         with:
           action: deploy
+          imagepullsecrets: |
+            acr-pull-secret
           manifests: |
             ./kubernetes/service.yaml
             ./kubernetes/blue-deploy.yaml
@@ -154,6 +156,8 @@ jobs:
         with:
           action: promote
           namespace: default
+          imagepullsecrets: |
+            acr-pull-secret
           manifests: |
             ./kubernetes/service.yaml
             ./kubernetes/green-deploy.yaml
@@ -169,6 +173,8 @@ jobs:
         with:
           action: reject
           namespace: default
+          imagepullsecrets: |
+            acr-pull-secret
           manifests: |
             ./kubernetes/service.yaml
             ./kubernetes/blue-deploy.yaml
