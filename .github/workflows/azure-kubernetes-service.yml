@@ -30,7 +30,8 @@
 name: Blue-Green-strategy
 
 on:
-  push: none
+  push:
+    branches: ["main"]
   workflow_dispatch:
 
 env:
@@ -96,7 +97,7 @@ jobs:
 
       # Deploys application based on given manifest file
       - name: Deploys application
-        uses: Azure/k8s-deploy@v4
+        uses: Azure/k8s-deploy@v5
         with:
           action: deploy
           manifests: |
@@ -148,7 +149,7 @@ jobs:
           use-kubelogin: 'true'
 
       - name: Promote App
-        uses: Azure/k8s-deploy@v4
+        uses: Azure/k8s-deploy@v5
         if: ${{ success() }}
         with:
           action: promote
@@ -163,7 +164,7 @@ jobs:
           
 
       - name: Reject App
-        uses: Azure/k8s-deploy@v4
+        uses: Azure/k8s-deploy@v5
         if: ${{ failure() }}
         with:
           action: reject
